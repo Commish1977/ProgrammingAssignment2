@@ -6,6 +6,10 @@
 
 ## makeCacheMatrix - Creates a matrix object that caches its inverse
 ##      - Arguement is assumed to be a square invertible matrix
+##      - In the function definitions are as follows
+##          x - the matrix passed
+##          invM - the inverse Matrix
+##          y - passed variable for the set function
 
 makeCacheMatrix <- function(x = matrix()) {
   invM<- NULL
@@ -22,6 +26,11 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## cacheSolve - Computes the inverse of the matrix returned by makeCacheMatrix above
 ##    If inverse has already been calculated, funciton will retrieve and return the cached inverse
+##      - In the function definitions are as follows
+##          x - the makeCacheMatrix passed
+##          invM - the inverse Matrix stored in cache or set via solve() function
+##          data - temporary matrix variable used to solve for inverse
+
 
 cacheSolve <- function(x, ...) {
         ## Return a matrix that is the inverse of 'x'
@@ -31,7 +40,7 @@ cacheSolve <- function(x, ...) {
     return(invM)
   }
   data<-x$get()
-  invM<-solve(x)
+  invM<-solve(data)
   x$setInv(invM)
   invM
 }
